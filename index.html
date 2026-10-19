@@ -3,102 +3,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101b35">
-  <title>Quick Data Ghana | Buy Data Bundles</title>
+  <title>Quick Data Ghana</title>
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f7fb;
+      background: #f3f6fb;
       color: #15213b;
     }
     header {
       background: #101b35;
       color: white;
-      padding: 22px 18px;
+      padding: 25px 15px;
       text-align: center;
     }
-    .logo { font-size: 30px; font-weight: bold; }
-    .logo span { color: #35d07f; }
-    header p { color: #cbd5e1; margin-bottom: 0; }
+    header h1 { margin: 0; font-size: 32px; }
+    header span { color: #35d07f; }
+    header p { color: #d6dfec; }
     main {
-      max-width: 620px;
-      margin: 28px auto;
-      padding: 0 16px;
+      max-width: 500px;
+      margin: 25px auto;
+      padding: 0 15px;
     }
-    .hero {
+    .card {
       background: white;
-      padding: 25px 20px;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow: 0 5px 22px #15213b0d;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px #15213b10;
     }
-    .hero h1 { margin-top: 0; font-size: 27px; }
-    .hero p { color: #65718a; line-height: 1.6; }
-    .networks {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 22px;
-    }
-    .network {
-      padding: 20px 10px;
-      border: 2px solid #e2e8f0;
-      border-radius: 14px;
-      background: white;
-      font-size: 18px;
+    label {
+      display: block;
+      margin: 17px 0 7px;
       font-weight: bold;
     }
-    .mtn { color: #222; border-top: 5px solid #ffcc00; }
-    .telecel { color: #d9272e; border-top: 5px solid #d9272e; }
-    .notice {
+    select, input, button {
+      width: 100%;
+      padding: 13px;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    select, input {
+      border: 1px solid #ccd5e2;
+      background: white;
+    }
+    button {
       margin-top: 22px;
-      padding: 15px;
-      background: #eaf2ff;
-      border-radius: 12px;
-      color: #31476d;
-      font-size: 14px;
-      line-height: 1.6;
+      border: none;
+      background: #16a765;
+      color: white;
+      font-weight: bold;
+    }
+    .notice {
+      background: #fff7dc;
+      color: #725414;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 18px;
+    }
+    #message {
+      margin-top: 15px;
+      line-height: 1.5;
     }
     footer {
       text-align: center;
-      padding: 28px 16px;
-      color: #65718a;
+      color: #68758a;
+      padding: 20px;
       font-size: 13px;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Quick <span>Data</span></div>
-    <p>Fast. Affordable. Reliable.</p>
+    <h1>Quick <span>Data</span></h1>
+    <p>Fast. Affordable. Reliable. 🇬🇭</p>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Buy Data Bundles in Ghana</h1>
-      <p>Welcome to Quick Data! We're building an easy way
-      to buy MTN and Telecel data bundles.</p>
+    <section class="card">
+      <h2>Order Data Bundles</h2>
+      <p>Choose your network and enter your details.</p>
 
-      <div class="networks">
-        <div class="network mtn">🟡 MTN Ghana</div>
-        <div class="network telecel">🔴 Telecel Ghana</div>
-      </div>
+      <form id="orderForm">
+        <label for="network">Network</label>
+        <select id="network" required>
+          <option value="">Choose network</option>
+          <option value="mtn">MTN Ghana</option>
+          <option value="telecel">Telecel Ghana</option>
+        </select>
+
+        <label for="phone">Recipient phone number</label>
+        <input id="phone" type="tel"
+          inputmode="tel" placeholder="e.g. 0241234567"
+          pattern="0[0-9]{9}" required>
+
+        <label for="bundle">Bundle size</label>
+        <select id="bundle" required>
+          <option value="">Choose bundle size</option>
+          <option value="500">500 MB</option>
+          <option value="1000">1 GB</option>
+          <option value="2000">2 GB</option>
+          <option value="5000">5 GB</option>
+          <option value="10000">10 GB</option>
+        </select>
+
+        <button type="submit">Continue</button>
+      </form>
 
       <div class="notice">
-        <strong>Coming soon!</strong><br>
-        Bundle prices, secure Mobile Money payments and
-        automatic data delivery will be added after setup
-        and testing are complete.
+        <strong>Preview only:</strong> Orders, prices, payments
+        and data delivery are not connected yet. Do not submit
+        payment or expect data delivery from this form.
       </div>
+      <div id="message" role="status"></div>
     </section>
   </main>
 
-  <footer>
-    © 2026 Quick Data Ghana. All rights reserved.
-  </footer>
+  <footer>© 2026 Quick Data Ghana</footer>
+
+  <script>
+    document.getElementById("orderForm").addEventListener(
+      "submit", function(event) {
+        event.preventDefault();
+        const network =
+          document.getElementById("network").value;
+        const phone =
+          document.getElementById("phone").value;
+        const bundle =
+          document.getElementById("bundle").value;
+
+        document.getElementById("message").textContent =
+          "Form preview: " +
+          (network === "mtn" ? "MTN" : "Telecel") +
+          ", " + bundle + " MB, recipient " + phone +
+          ". No order has been placed or payment taken.";
+      }
+    );
+  </script>
 </body>
 </html>
+
 
