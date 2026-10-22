@@ -3,149 +3,186 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101b35">
-  <title>Quick Data Ghana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Data | Ghana</title>
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #15213b;
+      background: #f5f7fb;
+      color: #202124;
     }
     header {
-      background: #101b35;
+      background: #101828;
       color: white;
-      padding: 25px 15px;
+      padding: 22px 16px;
       text-align: center;
     }
-    header h1 { margin: 0; font-size: 32px; }
-    header span { color: #35d07f; }
-    header p { color: #d6dfec; }
-    main {
-      max-width: 500px;
-      margin: 25px auto;
-      padding: 0 15px;
+    header h1 { margin: 0 0 8px; color: #ffca28; }
+    header p { margin: 0; }
+    nav {
+      background: white;
+      padding: 14px;
+      text-align: center;
     }
-    .card {
+    nav a {
+      color: #101828;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 35px 20px;
+      text-align: center;
+      background: #fff3c4;
+    }
+    .hero h2 { font-size: 28px; margin: 0 0 12px; }
+    .hero p { line-height: 1.6; }
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 24px 16px;
+    }
+    .networks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .network {
+      background: white;
+      border-radius: 14px;
+      padding: 22px 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px #0000000d;
+    }
+    .network h3 { font-size: 21px; }
+    .mtn { color: #9b7200; }
+    .telecel { color: #d32635; }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      background: #101828;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .order {
       background: white;
       padding: 22px;
-      border-radius: 16px;
-      box-shadow: 0 4px 18px #15213b10;
+      margin-top: 24px;
+      border-radius: 14px;
     }
-    label {
-      display: block;
-      margin: 17px 0 7px;
-      font-weight: bold;
-    }
-    select, input, button {
+    label { display: block; margin: 14px 0 6px; font-weight: bold; }
+    input, select {
       width: 100%;
       padding: 13px;
-      border-radius: 9px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: white;
       font-size: 16px;
     }
-    select, input {
-      border: 1px solid #ccd5e2;
-      background: white;
-    }
-    button {
-      margin-top: 22px;
-      border: none;
-      background: #16a765;
-      color: white;
-      font-weight: bold;
-    }
-    .notice {
-      background: #fff7dc;
-      color: #725414;
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 18px;
-    }
-    #message {
-      margin-top: 15px;
-      line-height: 1.5;
-    }
+    .submit { width: 100%; margin-top: 20px; background: #087443; }
+    .note { color: #667085; font-size: 13px; line-height: 1.5; }
     footer {
       text-align: center;
-      color: #68758a;
-      padding: 20px;
-      font-size: 13px;
+      padding: 24px 12px;
+      background: #101828;
+      color: white;
+      margin-top: 20px;
+    }
+    @media (max-width: 420px) {
+      .networks { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Quick <span>Data</span></h1>
-    <p>Fast. Affordable. Reliable. 🇬🇭</p>
+    <h1>QUICK DATA</h1>
+    <p>Your data, made simple.</p>
   </header>
 
-  <main>
-    <section class="card">
-      <h2>Order Data Bundles</h2>
-      <p>Choose your network and enter your details.</p>
+  <nav>
+    <a href="#networks">Bundles</a>
+    <a href="#order">Order</a>
+  </nav>
 
+  <section class="hero">
+    <h2>Stay Connected, Ghana!</h2>
+    <p>Choose your network and get started with Quick Data.</p>
+    <a href="#networks"><button>Explore Bundles</button></a>
+  </section>
+
+  <main class="container">
+    <section id="networks">
+      <h2>Choose Your Network</h2>
+      <div class="networks">
+        <div class="network">
+          <h3 class="mtn">🟡 MTN Ghana</h3>
+          <p>Explore MTN data packages.</p>
+          <button onclick="chooseNetwork('MTN')">Choose MTN</button>
+        </div>
+        <div class="network">
+          <h3 class="telecel">🔴 Telecel Ghana</h3>
+          <p>Explore Telecel data packages.</p>
+          <button onclick="chooseNetwork('Telecel')">Choose Telecel</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="order" id="order">
+      <h2>Place an Order</h2>
+      <p>Select a network and package to begin.</p>
       <form id="orderForm">
         <label for="network">Network</label>
         <select id="network" required>
           <option value="">Choose network</option>
-          <option value="mtn">MTN Ghana</option>
-          <option value="telecel">Telecel Ghana</option>
+          <option value="MTN">MTN Ghana</option>
+          <option value="Telecel">Telecel Ghana</option>
+        </select>
+
+        <label for="bundle">Data bundle</label>
+        <select id="bundle" required>
+          <option value="">Choose a package</option>
+          <option value="1GB">1 GB</option>
+          <option value="2GB">2 GB</option>
+          <option value="5GB">5 GB</option>
+          <option value="10GB">10 GB</option>
         </select>
 
         <label for="phone">Recipient phone number</label>
-        <input id="phone" type="tel"
-          inputmode="tel" placeholder="e.g. 0241234567"
-          pattern="0[0-9]{9}" required>
+        <input id="phone" type="tel" placeholder="e.g. 0241234567"
+          pattern="0[0-9]{9}" maxlength="10" required>
 
-        <label for="bundle">Bundle size</label>
-        <select id="bundle" required>
-          <option value="">Choose bundle size</option>
-          <option value="500">500 MB</option>
-          <option value="1000">1 GB</option>
-          <option value="2000">2 GB</option>
-          <option value="5000">5 GB</option>
-          <option value="10000">10 GB</option>
-        </select>
-
-        <button type="submit">Continue</button>
+        <button class="submit" type="submit">Continue</button>
+        <p class="note">This is an initial website prototype. Prices, payments, order storage and automatic bundle delivery have not yet been connected.</p>
       </form>
-
-      <div class="notice">
-        <strong>Preview only:</strong> Orders, prices, payments
-        and data delivery are not connected yet. Do not submit
-        payment or expect data delivery from this form.
-      </div>
-      <div id="message" role="status"></div>
+      <p id="message" role="status" aria-live="polite"></p>
     </section>
   </main>
 
-  <footer>© 2026 Quick Data Ghana</footer>
+  <footer>
+    <p>© 2026 Quick Data Ghana</p>
+    <p>Simple. Convenient. Connected.</p>
+  </footer>
 
   <script>
-    document.getElementById("orderForm").addEventListener(
-      "submit", function(event) {
-        event.preventDefault();
-        const network =
-          document.getElementById("network").value;
-        const phone =
-          document.getElementById("phone").value;
-        const bundle =
-          document.getElementById("bundle").value;
+    function chooseNetwork(network) {
+      document.getElementById('network').value = network;
+      document.getElementById('order').scrollIntoView({behavior: 'smooth'});
+    }
 
-        document.getElementById("message").textContent =
-          "Form preview: " +
-          (network === "mtn" ? "MTN" : "Telecel") +
-          ", " + bundle + " MB, recipient " + phone +
-          ". No order has been placed or payment taken.";
-      }
-    );
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('message').textContent =
+        'Demo only: your order has not been sent or paid for. Online ordering will be connected in a later step.';
+    });
   </script>
 </body>
 </html>
+
 
 
 
